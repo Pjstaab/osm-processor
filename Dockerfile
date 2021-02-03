@@ -1,9 +1,5 @@
 FROM ubuntu:20.04
 ENV workdir /mnt/data
-ENV OSMOSIS_VERSION="0.48.3"
-ENV PROTOZERO_VERSION="v1.7.0"
-ENV LIBOSMIUM_VERSION="v2.16.0"
-ENV OSMIUM_TOOL_VERSION="v1.13.1"
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update
 RUN apt-get -y install \
@@ -31,6 +27,12 @@ RUN apt-get -y install \
     gradle \
     apt-utils \
     postgresql-client
+
+# Setup versions after apt-get to keep layers
+ENV OSMOSIS_VERSION="0.48.3"
+ENV PROTOZERO_VERSION="v1.7.0"
+ENV LIBOSMIUM_VERSION="v2.16.0"
+ENV OSMIUM_TOOL_VERSION="v1.13.1"
 
 # Install osmosis
 RUN git clone https://github.com/openstreetmap/osmosis.git
