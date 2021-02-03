@@ -51,7 +51,7 @@ RUN git clone https://github.com/osmcode/osmium-tool
 RUN cd osmium-tool && git checkout ${OSMIUM_TOOL_VERSION} && mkdir build && cd build && cmake .. && make && make install
 
 # Install AWS and GCP cli
-RUN pip install awscli
+RUN pip3 install awscli
 RUN curl -sSL https://sdk.cloud.google.com | bash
 RUN ln -f -s /root/google-cloud-sdk/bin/gsutil /usr/bin/gsutil
 
