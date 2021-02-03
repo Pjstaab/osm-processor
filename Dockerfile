@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 ENV workdir /mnt/data
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update
 RUN apt-get -y install \
     build-essential \
