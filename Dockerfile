@@ -1,5 +1,9 @@
 FROM ubuntu:20.04
 ENV workdir /mnt/data
+ENV OSMOSIS_VERSION="0.48.3"
+ENV PROTOZERO_VERSION="1.7.0"
+ENV LIBOSMIUM_VERSION="2.16.0"
+ENV OSMIUM_TOOL_VERSION="1.13.1"
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update
 RUN apt-get -y install \
@@ -31,7 +35,7 @@ RUN apt-get -y install \
 # Install osmosis
 RUN git clone https://github.com/openstreetmap/osmosis.git
 WORKDIR osmosis
-RUN git checkout 0.48.3
+RUN git checkout ${OSMOSIS_VERSION}
 RUN mkdir "$PWD"/dist
 RUN ./gradlew assemble
 RUN tar -xvzf "$PWD"/package/build/distribution/*.tgz -C "$PWD"/dist/
@@ -40,11 +44,11 @@ RUN osmosis --version 2>&1 | grep "Osmosis Version"
 
 # Install osmium-tool
 RUN git clone https://github.com/mapbox/protozero
-RUN cd protozero && git checkout 23d48fd2a441c6e3b2852ff84a0ba398e48f74be && mkdir build && cd build && cmake .. && make && make install
+RUN cd protozero && git checkout ${PROTOZERO_VERSION} && mkdir build && cd build && cmake .. && make && make install
 RUN git clone https://github.com/osmcode/libosmium
-RUN cd libosmium && git checkout a1f88fe44b01863a1ac84efccff54b98bb2dc886 && mkdir build && cd build && cmake .. && make && make install
+RUN cd libosmium && git checkout ${LIBOSMIUM_VERSION} && mkdir build && cd build && cmake .. && make && make install
 RUN git clone https://github.com/osmcode/osmium-tool
-RUN cd osmium-tool && git checkout ddbcb44f3ec0c1a8d729e69e3cee40d25f5a00b4 && mkdir build && cd build && cmake .. && make && make install
+RUN cd osmium-tool && git checkout ${OSMIUM_TOOL_VERSION} && mkdir build && cd build && cmake .. && make && make install
 
 # Install AWS and GCP cli
 RUN pip install awscli
