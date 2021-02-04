@@ -12,8 +12,7 @@ RUN apt-get -y install \
     libbz2-dev \
     zlib1g-dev \
     libexpat1-dev \
-    proj-devel \
-    proj-epsg \
+    libproj-dev \
     lua5.3 \
     liblua5.3-dev \
     cmake \
