@@ -33,6 +33,7 @@ ENV OSMOSIS_VERSION="0.48.3"
 ENV PROTOZERO_VERSION="v1.7.0"
 ENV LIBOSMIUM_VERSION="v2.16.0"
 ENV OSMIUM_TOOL_VERSION="v1.13.1"
+ENV OSM2PGSQL_VERSION="1.4.1"
 
 # Install osmosis
 RUN git clone https://github.com/openstreetmap/osmosis.git
@@ -45,6 +46,8 @@ RUN ln -s "$PWD"/dist/bin/osmosis /usr/bin/osmosis
 RUN osmosis --version 2>&1 | grep "Osmosis Version"
 
 # Install osmium-tool
+RUN git clone https://github.com/openstreetmap/osm2pgsql
+RUN cd osm2pgsql && git checkout ${OSM2PGSQL} && mkdir build && cd build && cmake .. && make && make install
 RUN git clone https://github.com/mapbox/protozero
 RUN cd protozero && git checkout ${PROTOZERO_VERSION} && mkdir build && cd build && cmake .. && make && make install
 RUN git clone https://github.com/osmcode/libosmium
