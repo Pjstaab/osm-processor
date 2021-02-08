@@ -51,8 +51,8 @@ RUN osmosis --version 2>&1 | grep "Osmosis Version"
 ENV IMPOSM3_VERSION="0.11.0"
 RUN curl -L https://github.com/omniscale/imposm3/releases/download/v${IMPOSM3_VERSION}/imposm-${IMPOSM3_VERSION}-linux-x86-64.tar.gz \
     -o /tmp/imposm-${IMPOSM3_VERSION}-linux-x86-64.tar.gz \
-    && tar xvzf /tmp/helm-${HELM_VERSION}-linux-amd64.tar.gz -C /tmp \
-    && mv /tmp/helm-${HELM_VERSION}-linux-amd64 /usr/local/bin
+    && tar xvzf /tmp/imposm-${IMPOSM3_VERSION}-linux-x86-64.tar.gz -C /tmp \
+    && mv /tmp/imposm-${IMPOSM3_VERSION}-linux-x86-64 /usr/local/bin
 ENV OSM2PGSQL_VERSION="1.4.0"
 RUN git clone https://github.com/openstreetmap/osm2pgsql
 RUN cd osm2pgsql && git checkout ${OSM2PGSQL_VERSION} && mkdir build && cd build && cmake .. && make && make install
