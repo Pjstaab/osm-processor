@@ -53,18 +53,18 @@ RUN curl -L https://github.com/omniscale/imposm3/releases/download/v${IMPOSM3_VE
     -o /tmp/imposm-${IMPOSM3_VERSION}-linux-x86-64.tar.gz \
     && tar xvzf /tmp/imposm-${IMPOSM3_VERSION}-linux-x86-64.tar.gz -C /tmp \
     && mv /tmp/imposm-${IMPOSM3_VERSION}-linux-x86-64 /usr/local/bin
-#ENV OSM2PGSQL_VERSION="1.4.0"
-#RUN git clone https://github.com/openstreetmap/osm2pgsql
-#RUN cd osm2pgsql && git checkout ${OSM2PGSQL_VERSION} && mkdir build && cd build && cmake .. && make && make install
-#ENV PROTOZERO_VERSION="v1.7.0"
-#RUN git clone https://github.com/mapbox/protozero
-#RUN cd protozero && git checkout ${PROTOZERO_VERSION} && mkdir build && cd build && cmake .. && make && make install
-#ENV LIBOSMIUM_VERSION="v2.16.0"
-#RUN git clone https://github.com/osmcode/libosmium
-#RUN cd libosmium && git checkout ${LIBOSMIUM_VERSION} && mkdir build && cd build && cmake .. && make && make install
-#ENV OSMIUM_TOOL_VERSION="v1.13.1"
-#RUN git clone https://github.com/osmcode/osmium-tool
-#RUN cd osmium-tool && git checkout ${OSMIUM_TOOL_VERSION} && mkdir build && cd build && cmake .. && make && make install
+ENV OSM2PGSQL_VERSION="1.4.0"
+RUN git clone https://github.com/openstreetmap/osm2pgsql
+RUN cd osm2pgsql && git checkout ${OSM2PGSQL_VERSION} && mkdir build && cd build && cmake .. && make && make install
+ENV PROTOZERO_VERSION="v1.7.0"
+RUN git clone https://github.com/mapbox/protozero
+RUN cd protozero && git checkout ${PROTOZERO_VERSION} && mkdir build && cd build && cmake .. && make && make install
+ENV LIBOSMIUM_VERSION="v2.16.0"
+RUN git clone https://github.com/osmcode/libosmium
+RUN cd libosmium && git checkout ${LIBOSMIUM_VERSION} && mkdir build && cd build && cmake .. && make && make install
+ENV OSMIUM_TOOL_VERSION="v1.13.1"
+RUN git clone https://github.com/osmcode/osmium-tool
+RUN cd osmium-tool && git checkout ${OSMIUM_TOOL_VERSION} && mkdir build && cd build && cmake .. && make && make install
 
 # Install AWS and GCP cli
 RUN pip3 install awscli
