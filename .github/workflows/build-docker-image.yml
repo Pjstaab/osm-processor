@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: pjstaab/osmseed-osm-processor:latest
+          tags: ghcr.io/pjstaab/osmseed-osm-processor:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
