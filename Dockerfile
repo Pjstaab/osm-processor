@@ -67,9 +67,9 @@ RUN curl -L https://github.com/omniscale/imposm3/releases/download/v${IMPOSM3_VE
     && mv /tmp/imposm-${IMPOSM3_VERSION}-linux-x86-64/* /usr/local/bin
 ENV COCKROACHDB_VERSION="v20.2.4"
 RUN curl -L https://binaries.cockroachdb.com/cockroach-${COCKROACHDB_VERSION}.linux-amd64.tgz  \
-    -o /tmp/cockroach-${COCKROACHDB_VERSION}-linux-amd64.tar.gz \
-    && tar xvzf /tmp/cockroach-${COCKROACHDB_VERSION}-linux-amd64.tar.gz -C /tmp \
-    && mv /tmp/cockroach-${COCKROACHDB_VERSION}-linux-amd64/cockroach /usr/local/bin
+    -o /tmp/cockroach-${COCKROACHDB_VERSION}.linux-amd64.tar.gz \
+    && tar xvzf /tmp/cockroach-${COCKROACHDB_VERSION}.linux-amd64.tar.gz -C /tmp \
+    && mv /tmp/cockroach-${COCKROACHDB_VERSION}.linux-amd64/cockroach /usr/local/bin
 
 # Install AWS and GCP cli
 RUN pip3 install awscli
